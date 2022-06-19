@@ -1,0 +1,121 @@
+{
+  "name": "mora-browser",
+  "productName": "MORA Browser",
+  "version": "0.8.16",
+  "main": "main.js",
+  "private": true,
+  "description": "MORA browser is a modern browser interface to interact with an intelligent anti-phishing tool called SmartiPhish. However, the MORA browser is only a tool to experience the benefits of the SmartiPhish, and it may not give you the whole modern browser experience at present.",
+  "homepage": "./",
+  "author": "Subhash Ariyadasa <188077d@uom.lk>",
+  "build": {
+    "icon": "/home/subhash/Documents/Projects/browser/mora-browser/resources/icon.png",
+    "productName": "MORA Browser",
+    "files": [
+      "build/**/*",
+      "main.js"
+    ],
+    "extraMetadata": {
+      "main": "main.js"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis-web",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "category": "Network",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "ia32",
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "ia32",
+            "x64"
+          ]
+        }
+      ]
+    },
+    "mac": {}
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@material-ui/core": "^4.11.3",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.6.3",
+    "axios": "^0.21.4",
+    "classnames": "^2.2.6",
+    "cross-fetch": "^3.0.6",
+    "crypto": "^1.0.1",
+    "electron-context-menu": "^2.4.0",
+    "electron-installer-debian": "^3.1.0",
+    "electron-is-dev": "^1.2.0",
+    "electron-log": "^4.3.1",
+    "font-awesome": "^4.7.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
+    "electron": "wait-on tcp:3000 && electron .",
+    "electron-pack": "electron-builder",
+    "package-win": "electron-packager . mora-browser --overwrite --asar=true --platform=win32 --arch=ia32 --icon=resources/icon.ico --prune=true --out=release-builds --version-string.CompanyName=\"Subhash Ariyadasa <188077d@uom.lk>\" --version-string.FileDescription=\"MORA browser is a modern browser interface to interact with an intelligent anti-phishing tool called SmartiPhish. However, the MORA browser is only a tool to experience the benefits of the SmartiPhish, and it may not give you the whole modern browser experience at present.\" --version-string.ProductName=\"MORA Browser\"",
+    "package-linux": "electron-packager . mora-browser --overwrite --asar=true --platform=linux --arch=x64 --icon=/home/subhash/Documents/Projects/browser/mora-browser/resources/icon.png --prune=true --out=release-builds",
+    "deb64": "electron-installer-debian --src release-builds/mora-browser-linux-x64/ --dest dist/installers/ --description 'MORA browser is a modern browser interface to interact with an intelligent anti-phishing tool called SmartiPhish. However, the MORA browser is only a tool to experience the benefits of the SmartiPhish, and it may not give you the whole modern browser experience at present.' --icon '/home/subhash/Documents/Projects/browser/mora-browser/resources/icon.png' --ProductName 'MORA Browser' --arch amd64 --config config.json"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "electron": "^10.3.2",
+    "electron-builder": "^22.9.1",
+    "electron-icon-maker": "0.0.5",
+    "electron-packager": "^15.2.0",
+    "wait-on": "^5.2.1"
+  }
+}
